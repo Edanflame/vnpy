@@ -95,7 +95,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def init_menu(self) -> None:
         """"""
         bar: QtWidgets.QMenuBar = self.menuBar()
-        bar.setNativeMenuBar(False)     # for mac and linux
+        # bar.setNativeMenuBar(False)     # for mac and linux
 
         # System menu
         sys_menu: QtWidgets.QMenu = bar.addMenu("系统")
@@ -132,9 +132,19 @@ class MainWindow(QtWidgets.QMainWindow):
             self.add_action(app_menu, app.display_name, app.icon_name, func, True)
 
         # Global setting editor
-        action: QtGui.QAction = QtWidgets.QAction("配置", self)
-        action.triggered.connect(self.edit_global_setting)
-        bar.addAction(action)
+        # action: QtGui.QAction = QtWidgets.QAction("配置", self)
+        # action.triggered.connect(self.edit_global_setting)
+        # bar.addAction(action)
+
+        help_menu = bar.addMenu("配置")
+
+        self.add_action(
+            help_menu,
+            "全局配置",
+            "",
+            self.edit_global_setting,
+            False
+        )
 
         # Help menu
         help_menu: QtWidgets.QMenu = bar.addMenu("帮助")
